@@ -23,13 +23,13 @@ class ColorTest extends TestCase
         $color = new Color();
         $this->assertSame(' ', $color->apply(' '));
 
-        $color = new Color('red', 'yellow');
+        $color = new Color(Color::RED, Color::YELLOW);
         $this->assertSame("\033[31;43m \033[39;49m", $color->apply(' '));
 
-        $color = new Color('bright-red', 'bright-yellow');
+        $color = new Color(Color::BRIGHT_RED, Color::BRIGHT_YELLOW);
         $this->assertSame("\033[91;103m \033[39;49m", $color->apply(' '));
 
-        $color = new Color('red', 'yellow', ['underscore']);
+        $color = new Color(Color::RED, Color::YELLOW, [Color::OPTION_UNDERSCORE]);
         $this->assertSame("\033[31;43;4m \033[39;49;24m", $color->apply(' '));
     }
 

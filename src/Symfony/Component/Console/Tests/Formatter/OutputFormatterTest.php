@@ -12,6 +12,7 @@
 namespace Symfony\Component\Console\Tests\Formatter;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
@@ -129,13 +130,13 @@ class OutputFormatterTest extends TestCase
     {
         $formatter = new OutputFormatter(true);
 
-        $style = new OutputFormatterStyle('blue', 'white');
+        $style = new OutputFormatterStyle(Color::BLUE, Color::WHITE);
         $formatter->setStyle('test', $style);
 
         $this->assertEquals($style, $formatter->getStyle('test'));
         $this->assertNotEquals($style, $formatter->getStyle('info'));
 
-        $style = new OutputFormatterStyle('blue', 'white');
+        $style = new OutputFormatterStyle(Color::BLUE, Color::WHITE);
         $formatter->setStyle('b', $style);
 
         $this->assertEquals("\033[34;47msome \033[39;49m\033[34;47mcustom\033[39;49m\033[34;47m msg\033[39;49m", $formatter->format('<test>some <b>custom</b> msg</test>'));
@@ -145,7 +146,7 @@ class OutputFormatterTest extends TestCase
     {
         $formatter = new OutputFormatter(true);
 
-        $style = new OutputFormatterStyle('blue', 'white');
+        $style = new OutputFormatterStyle(Color::BLUE, Color::WHITE);
         $formatter->setStyle('info', $style);
 
         $this->assertEquals("\033[34;47msome custom msg\033[39;49m", $formatter->format('<info>some custom msg</info>'));

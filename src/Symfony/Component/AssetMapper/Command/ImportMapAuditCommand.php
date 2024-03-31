@@ -14,6 +14,7 @@ namespace Symfony\Component\AssetMapper\Command;
 use Symfony\Component\AssetMapper\ImportMap\ImportMapAuditor;
 use Symfony\Component\AssetMapper\ImportMap\ImportMapPackageAuditVulnerability;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,11 +25,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ImportMapAuditCommand extends Command
 {
     private const SEVERITY_COLORS = [
-        'critical' => 'red',
-        'high' => 'red',
-        'medium' => 'yellow',
-        'low' => 'default',
-        'unknown' => 'default',
+        'critical' => Color::RED,
+        'high' => Color::RED,
+        'medium' => Color::YELLOW,
+        'low' => Color::DEFAULT,
+        'unknown' => Color::DEFAULT,
     ];
 
     private SymfonyStyle $io;

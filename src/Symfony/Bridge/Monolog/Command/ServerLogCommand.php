@@ -18,6 +18,7 @@ use Monolog\LogRecord;
 use Symfony\Bridge\Monolog\Formatter\ConsoleFormatter;
 use Symfony\Bridge\Monolog\Handler\ConsoleHandler;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\LogicException;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -32,7 +33,7 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 #[AsCommand(name: 'server:log', description: 'Start a log server that displays logs in real time')]
 class ServerLogCommand extends Command
 {
-    private const BG_COLOR = ['black', 'blue', 'cyan', 'green', 'magenta', 'red', 'white', 'yellow'];
+    private const BG_COLOR = [Color::BLACK, Color::BLUE, Color::CYAN, Color::GREEN, Color::MAGENTA, Color::RED, Color::WHITE, Color::YELLOW];
 
     private ExpressionLanguage $el;
     private HandlerInterface $handler;

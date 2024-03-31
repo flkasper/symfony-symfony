@@ -12,19 +12,20 @@
 namespace Symfony\Component\Console\Tests\Formatter;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
 class OutputFormatterStyleTest extends TestCase
 {
     public function testConstructor()
     {
-        $style = new OutputFormatterStyle('green', 'black', ['bold', 'underscore']);
+        $style = new OutputFormatterStyle(Color::GREEN, Color::BLACK, [Color::OPTION_BOLD, Color::OPTION_UNDERSCORE]);
         $this->assertEquals("\033[32;40;1;4mfoo\033[39;49;22;24m", $style->apply('foo'));
 
-        $style = new OutputFormatterStyle('red', null, ['blink']);
+        $style = new OutputFormatterStyle(Color::RED, null, [Color::OPTION_BLINK]);
         $this->assertEquals("\033[31;5mfoo\033[39;25m", $style->apply('foo'));
 
-        $style = new OutputFormatterStyle(null, 'white');
+        $style = new OutputFormatterStyle(null, Color::WHITE);
         $this->assertEquals("\033[47mfoo\033[49m", $style->apply('foo'));
     }
 
@@ -32,13 +33,13 @@ class OutputFormatterStyleTest extends TestCase
     {
         $style = new OutputFormatterStyle();
 
-        $style->setForeground('black');
+        $style->setForeground(Color::BLACK);
         $this->assertEquals("\033[30mfoo\033[39m", $style->apply('foo'));
 
-        $style->setForeground('blue');
+        $style->setForeground(Color::BLUE);
         $this->assertEquals("\033[34mfoo\033[39m", $style->apply('foo'));
 
-        $style->setForeground('default');
+        $style->setForeground(Color::DEFAULT);
         $this->assertEquals("\033[39mfoo\033[39m", $style->apply('foo'));
 
         $this->expectException(\InvalidArgumentException::class);
@@ -49,13 +50,13 @@ class OutputFormatterStyleTest extends TestCase
     {
         $style = new OutputFormatterStyle();
 
-        $style->setBackground('black');
+        $style->setBackground(Color::BLACK);
         $this->assertEquals("\033[40mfoo\033[49m", $style->apply('foo'));
 
-        $style->setBackground('yellow');
+        $style->setBackground(Color::YELLOW);
         $this->assertEquals("\033[43mfoo\033[49m", $style->apply('foo'));
 
-        $style->setBackground('default');
+        $style->setBackground(Color::DEFAULT);
         $this->assertEquals("\033[49mfoo\033[49m", $style->apply('foo'));
 
         $this->expectException(\InvalidArgumentException::class);
@@ -66,19 +67,19 @@ class OutputFormatterStyleTest extends TestCase
     {
         $style = new OutputFormatterStyle();
 
-        $style->setOptions(['reverse', 'conceal']);
+        $style->setOptions([Color::OPTION_REVERSE, Color::OPTION_CONCEAL]);
         $this->assertEquals("\033[7;8mfoo\033[27;28m", $style->apply('foo'));
 
-        $style->setOption('bold');
+        $style->setOption(Color::OPTION_BOLD);
         $this->assertEquals("\033[7;8;1mfoo\033[27;28;22m", $style->apply('foo'));
 
-        $style->unsetOption('reverse');
+        $style->unsetOption(Color::OPTION_REVERSE);
         $this->assertEquals("\033[8;1mfoo\033[28;22m", $style->apply('foo'));
 
-        $style->setOption('bold');
+        $style->setOption(Color::OPTION_BOLD);
         $this->assertEquals("\033[8;1mfoo\033[28;22m", $style->apply('foo'));
 
-        $style->setOptions(['bold']);
+        $style->setOptions([Color::OPTION_BOLD]);
         $this->assertEquals("\033[1mfoo\033[22m", $style->apply('foo'));
 
         try {

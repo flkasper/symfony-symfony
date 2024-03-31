@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\Console\Helper;
 
+use Symfony\Component\Console\Color;
+
 /**
  * Helps outputting debug information when running an external program from a command.
  *
@@ -20,7 +22,7 @@ namespace Symfony\Component\Console\Helper;
  */
 class DebugFormatterHelper extends Helper
 {
-    private const COLORS = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'default'];
+    private const COLORS = [Color::BLACK, Color::RED, Color::GREEN, Color::YELLOW, Color::BLUE, Color::MAGENTA, Color::CYAN, Color::WHITE, Color::DEFAULT];
     private array $started = [];
     private int $count = -1;
 

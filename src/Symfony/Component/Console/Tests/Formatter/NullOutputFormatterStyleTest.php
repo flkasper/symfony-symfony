@@ -12,6 +12,7 @@
 namespace Symfony\Component\Console\Tests\Formatter;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Formatter\NullOutputFormatterStyle;
 
 /**
@@ -29,14 +30,14 @@ class NullOutputFormatterStyleTest extends TestCase
     public function testSetForeground()
     {
         $style = new NullOutputFormatterStyle();
-        $style->setForeground('black');
+        $style->setForeground(Color::BLACK);
         $this->assertSame('foo', $style->apply('foo'));
     }
 
     public function testSetBackground()
     {
         $style = new NullOutputFormatterStyle();
-        $style->setBackground('blue');
+        $style->setBackground(Color::BLUE);
         $this->assertSame('foo', $style->apply('foo'));
     }
 
@@ -44,13 +45,13 @@ class NullOutputFormatterStyleTest extends TestCase
     {
         $style = new NullOutputFormatterStyle();
 
-        $style->setOptions(['reverse', 'conceal']);
+        $style->setOptions([Color::OPTION_REVERSE, Color::OPTION_CONCEAL]);
         $this->assertSame('foo', $style->apply('foo'));
 
-        $style->setOption('bold');
+        $style->setOption(Color::OPTION_BOLD);
         $this->assertSame('foo', $style->apply('foo'));
 
-        $style->unsetOption('reverse');
+        $style->unsetOption(Color::OPTION_REVERSE);
         $this->assertSame('foo', $style->apply('foo'));
     }
 }

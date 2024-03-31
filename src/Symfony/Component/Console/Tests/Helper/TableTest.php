@@ -12,6 +12,7 @@
 namespace Symfony\Component\Console\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Formatter\OutputFormatter;
@@ -716,8 +717,8 @@ TABLE
                            '<fg=red>978</>',
                            [
                                'style' => new TableCellStyle([
-                                   'fg' => 'black',
-                                   'bg' => 'green',
+                                   'fg' => Color::BLACK,
+                                   'bg' => Color::GREEN,
                                ]),
                            ]
                        ),
@@ -727,8 +728,8 @@ TABLE
                            [
                                'rowspan' => 2,
                                'style' => new TableCellStyle([
-                                   'fg' => 'red',
-                                   'bg' => 'green',
+                                   'fg' => Color::RED,
+                                   'bg' => Color::GREEN,
                                    'align' => 'center',
                                ]),
                            ]
@@ -746,8 +747,8 @@ TABLE
                            [
                                'colspan' => 2,
                                'style' => new TableCellStyle([
-                                   'fg' => 'red',
-                                   'bg' => 'green',
+                                   'fg' => Color::RED,
+                                   'bg' => Color::GREEN,
                                    'align' => 'center',
                                ]),
                            ]
@@ -756,8 +757,8 @@ TABLE
                            'tttt',
                            [
                                'style' => new TableCellStyle([
-                                   'fg' => 'red',
-                                   'bg' => 'green',
+                                   'fg' => Color::RED,
+                                   'bg' => Color::GREEN,
                                    'align' => 'right',
                                ]),
                            ]

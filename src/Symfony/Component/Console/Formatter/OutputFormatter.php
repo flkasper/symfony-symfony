@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Console\Formatter;
 
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 use function Symfony\Component\String\b;
@@ -71,10 +72,10 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     {
         $this->decorated = $decorated;
 
-        $this->setStyle('error', new OutputFormatterStyle('white', 'red'));
-        $this->setStyle('info', new OutputFormatterStyle('green'));
-        $this->setStyle('comment', new OutputFormatterStyle('yellow'));
-        $this->setStyle('question', new OutputFormatterStyle('black', 'cyan'));
+        $this->setStyle('error', new OutputFormatterStyle(Color::WHITE, Color::RED));
+        $this->setStyle('info', new OutputFormatterStyle(Color::GREEN));
+        $this->setStyle('comment', new OutputFormatterStyle(Color::YELLOW));
+        $this->setStyle('question', new OutputFormatterStyle(Color::BLACK, Color::CYAN));
 
         foreach ($styles as $name => $style) {
             $this->setStyle($name, $style);

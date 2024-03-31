@@ -12,6 +12,7 @@
 namespace Symfony\Component\Console\Tests\Output;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\Output;
 
@@ -122,7 +123,7 @@ class OutputTest extends TestCase
 
     public function testWriteDecoratedMessage()
     {
-        $fooStyle = new OutputFormatterStyle('yellow', 'red', ['blink']);
+        $fooStyle = new OutputFormatterStyle(Color::YELLOW, Color::RED, [Color::OPTION_BLINK]);
         $output = new TestOutput();
         $output->getFormatter()->setStyle('FOO', $fooStyle);
         $output->setDecorated(true);

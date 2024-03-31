@@ -14,6 +14,7 @@ namespace Symfony\Component\AssetMapper\Command;
 use Symfony\Component\AssetMapper\ImportMap\ImportMapUpdateChecker;
 use Symfony\Component\AssetMapper\ImportMap\PackageUpdateInfo;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,8 +26,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class ImportMapOutdatedCommand extends Command
 {
     private const COLOR_MAPPING = [
-        'update-possible' => 'yellow',
-        'semver-safe-update' => 'red',
+        'update-possible' => Color::YELLOW,
+        'semver-safe-update' => Color::RED,
     ];
 
     public function __construct(

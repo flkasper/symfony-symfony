@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Console\Helper;
 
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Cursor;
 use Symfony\Component\Console\Exception\MissingInputException;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -257,7 +258,7 @@ class QuestionHelper extends Helper
         shell_exec('stty -icanon -echo');
 
         // Add highlighted text style
-        $output->getFormatter()->setStyle('hl', new OutputFormatterStyle('black', 'white'));
+        $output->getFormatter()->setStyle('hl', new OutputFormatterStyle(Color::BLACK, Color::WHITE));
 
         // Read a keypress
         while (!feof($inputStream)) {

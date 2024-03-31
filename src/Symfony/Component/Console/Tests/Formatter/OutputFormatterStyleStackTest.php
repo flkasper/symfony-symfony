@@ -12,6 +12,7 @@
 namespace Symfony\Component\Console\Tests\Formatter;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Color;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Formatter\OutputFormatterStyleStack;
 
@@ -20,12 +21,12 @@ class OutputFormatterStyleStackTest extends TestCase
     public function testPush()
     {
         $stack = new OutputFormatterStyleStack();
-        $stack->push($s1 = new OutputFormatterStyle('white', 'black'));
-        $stack->push($s2 = new OutputFormatterStyle('yellow', 'blue'));
+        $stack->push($s1 = new OutputFormatterStyle(Color::WHITE, Color::BLACK));
+        $stack->push($s2 = new OutputFormatterStyle(Color::YELLOW, Color::BLUE));
 
         $this->assertEquals($s2, $stack->getCurrent());
 
-        $stack->push($s3 = new OutputFormatterStyle('green', 'red'));
+        $stack->push($s3 = new OutputFormatterStyle(Color::GREEN, Color::RED));
 
         $this->assertEquals($s3, $stack->getCurrent());
     }
@@ -33,8 +34,8 @@ class OutputFormatterStyleStackTest extends TestCase
     public function testPop()
     {
         $stack = new OutputFormatterStyleStack();
-        $stack->push($s1 = new OutputFormatterStyle('white', 'black'));
-        $stack->push($s2 = new OutputFormatterStyle('yellow', 'blue'));
+        $stack->push($s1 = new OutputFormatterStyle(Color::WHITE, Color::BLACK));
+        $stack->push($s2 = new OutputFormatterStyle(Color::YELLOW, Color::BLUE));
 
         $this->assertEquals($s2, $stack->pop());
         $this->assertEquals($s1, $stack->pop());
@@ -51,9 +52,9 @@ class OutputFormatterStyleStackTest extends TestCase
     public function testPopNotLast()
     {
         $stack = new OutputFormatterStyleStack();
-        $stack->push($s1 = new OutputFormatterStyle('white', 'black'));
-        $stack->push($s2 = new OutputFormatterStyle('yellow', 'blue'));
-        $stack->push($s3 = new OutputFormatterStyle('green', 'red'));
+        $stack->push($s1 = new OutputFormatterStyle(Color::WHITE, Color::BLACK));
+        $stack->push($s2 = new OutputFormatterStyle(Color::YELLOW, Color::BLUE));
+        $stack->push($s3 = new OutputFormatterStyle(Color::GREEN, Color::RED));
 
         $this->assertEquals($s2, $stack->pop($s2));
         $this->assertEquals($s1, $stack->pop());
@@ -62,10 +63,10 @@ class OutputFormatterStyleStackTest extends TestCase
     public function testInvalidPop()
     {
         $stack = new OutputFormatterStyleStack();
-        $stack->push(new OutputFormatterStyle('white', 'black'));
+        $stack->push(new OutputFormatterStyle(Color::WHITE, Color::BLACK));
 
         $this->expectException(\InvalidArgumentException::class);
 
-        $stack->pop(new OutputFormatterStyle('yellow', 'blue'));
+        $stack->pop(new OutputFormatterStyle(Color::YELLOW, Color::BLUE));
     }
 }
